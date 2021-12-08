@@ -4,6 +4,13 @@
     import Entry from '$lib/Entry.svelte'
     import EntryModal from '$lib/EntryModal.svelte';
 
+    async function signOut() {
+   	 const { error } = await supabase.auth.signOut();
+
+   	 if (error) alert(error.message); // alert if error
+    }
+
+
 </script>
 
 <Greeting /> 
@@ -20,6 +27,11 @@
     	<Entry />
    	 
     </div>
-
-    <EntryModal />
 </section>
+
+<!-- Sign Out -->
+<section class="container px-4 py-3 text-center">
+    <button class="btn btn-secondary" on:click={signOut}>Logout</button>
+</section>
+
+<EntryModal />
